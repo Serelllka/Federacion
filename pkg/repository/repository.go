@@ -7,6 +7,7 @@ import (
 
 type Authorization interface {
 	CreateUser(user federacion.User) (int, error)
+	GetUser(username, password string) (federacion.User, error)
 }
 
 type Friends interface {
