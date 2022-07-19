@@ -12,6 +12,17 @@ import (
 	"os"
 )
 
+// @title           Federacion API
+// @version         1.0
+// @description     This is a sample Federacion server
+
+// @host      localhost:8080
+// @BasePath  /
+
+// @securityDefinitions.apikey ApiKeyAuth
+// @in header
+// @name Authorization
+
 func main() {
 	logrus.SetFormatter(new(logrus.JSONFormatter))
 	if err := initConfig(); err != nil {
