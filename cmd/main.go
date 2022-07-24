@@ -1,22 +1,25 @@
 package main
 
 import (
-	federacion "github.com/Serelllka/Federacion"
+	"os"
+
+	"github.com/Serelllka/Federacion"
 	"github.com/Serelllka/Federacion/pkg/handler"
 	"github.com/Serelllka/Federacion/pkg/repository"
 	"github.com/Serelllka/Federacion/pkg/service"
 	"github.com/joho/godotenv"
-	_ "github.com/lib/pq"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
-	"os"
+
+	_ "github.com/Serelllka/Federacion/docs"
+	_ "github.com/lib/pq"
 )
 
 // @title           Federacion API
 // @version         1.0
 // @description     This is a sample Federacion server
 
-// @host      localhost:8080
+// @host      localhost:8000
 // @BasePath  /
 
 // @securityDefinitions.apikey ApiKeyAuth
@@ -58,5 +61,6 @@ func main() {
 func initConfig() error {
 	viper.AddConfigPath("config")
 	viper.SetConfigName("config")
+	viper.SetConfigType("yaml")
 	return viper.ReadInConfig()
 }

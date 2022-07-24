@@ -10,12 +10,13 @@ type Authorization interface {
 	GetUser(username, password string) (federacion.User, error)
 }
 
-type Friends interface {
+type Articles interface {
+	CreateArticle(user federacion.User) (int, error)
 }
 
 type Repository struct {
 	Authorization
-	Friends
+	Articles
 }
 
 func NewRepository(db *sqlx.DB) *Repository {
