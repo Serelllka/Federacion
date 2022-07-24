@@ -5,13 +5,14 @@ import (
 
 	"github.com/Serelllka/Federacion"
 	"github.com/gin-gonic/gin"
+
+	_ "github.com/Serelllka/Federacion/docs"
 )
 
 // @Summary SignUp
 // @Tags auth
 // @Description create account
 // @ID create-account
-// @Accept  json
 // @Produce  json
 // @Param input body federacion.User true "account info"
 // @Success 200 {integer} integer 1
@@ -44,8 +45,8 @@ type signInInput struct {
 // @Tags auth
 // @Description login
 // @ID login
-// @Accept  json
-// @Produce  json
+// @Accept json
+// @Produce json
 // @Param input body signInInput true "credentials"
 // @Success 200 {string} string "token"
 // @Router /auth/sign-in [post]
