@@ -10,7 +10,7 @@ db:
 cors:
   allowOrigins: ["*"]
   allowMethods: ["GET", "POST"]
-  allowHeaders: ["Origin", "Content-Type", "accept"]
+  allowHeaders: ["Origin", "Content-Type", "Accept", "Authorization"]
   exposeHeaders: ["Content-Length"]
   allowCredentials: true
   maxAge: "12h"

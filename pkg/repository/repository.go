@@ -1,26 +1,44 @@
 package repository
 
 import (
-	federacion "github.com/Serelllka/Federacion"
+	"github.com/Serelllka/Federacion/entities"
 	"github.com/jmoiron/sqlx"
 )
 
 type Authorization interface {
-	CreateUser(user federacion.User) (int, error)
-	GetUser(username, password string) (federacion.User, error)
+	CreateUser(user entities.User) (int, error)
+	GetUser(username, password string) (entities.User, error)
 }
 
-type Articles interface {
-	CreateArticle(user federacion.User) (int, error)
+type Article interface {
+	CreateArticle(article entities.Article) (int, error)
+	GetArticleById(id int) (entities.Article, error)
+	UpdateArticle(id int, newArticle entities.Article) error
+	GetAllArticles() ([]entities.Article, error)
+}
+
+type Condemnation interface {
+	CreateCondemnation(condemnations entities.Condemnation) (int, error)
+	GetCondemnationById(id int) (entities.Condemnation, error)
+	UpdateCondemnation(id int, newCondemnations entities.Condemnation) error
+}
+
+type Users interface {
+	GetAllUsers() (users []entities.UserInfo, err error)
 }
 
 type Repository struct {
+	Users
+	Condemnation
 	Authorization
-	Articles
+	Article
 }
 
 func NewRepository(db *sqlx.DB) *Repository {
 	return &Repository{
 		Authorization: NewAuthPostgres(db),
+		Article:       NewArticlePostgres(db),
+		Condemnation:  NewCondemnationPostgres(db),
+		Users:         NewUsersPostgres(db),
 	}
 }

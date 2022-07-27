@@ -3,6 +3,7 @@ package handler
 import (
 	"github.com/Serelllka/Federacion/pkg/service"
 	"github.com/gin-contrib/cors"
+	"github.com/gin-gonic/contrib/static"
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
 	swaggerFiles "github.com/swaggo/files"
@@ -32,6 +33,8 @@ func (h *Handler) InitRoutes() *gin.Engine {
 	}
 
 	router.Use(cors.New(corsConfig))
+	router.Use(static.Serve("/", static.LocalFile("./views", true)))
+	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	auth := router.Group("/auth")
 	{
@@ -39,15 +42,26 @@ func (h *Handler) InitRoutes() *gin.Engine {
 		auth.POST("/sign-in", h.signIn)
 	}
 
-	api := router.Group("/api", h.userIdentity)
+	users := router.Group("/users")
 	{
-		friends := api.Group("/friends")
-		{
-			friends.POST("/add-friend", h.AddFriend)
-		}
+		users.GET("/", h.getAllUsers)
 	}
 
-	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+	api := router.Group("/api", h.userIdentity)
+	{
+		articles := api.Group("/articles")
+		{
+			articles.GET("/", h.GetAllArticles)
+			articles.GET("/:id", h.GetArticle)
+			articles.POST("/", h.AddArticle)
+		}
+
+		condem := api.Group("/condem")
+		{
+			condem.GET("/")
+			condem.POST("/", h.AddCondemnation)
+		}
+	}
 
 	return router
 }
