@@ -61,6 +61,13 @@ func (h *Handler) InitRoutes() *gin.Engine {
 			condem.GET("/")
 			condem.POST("/", h.AddCondemnation)
 		}
+
+		userInfo := api.Group("/user-info")
+		{
+			userInfo.GET("/")
+			userInfo.GET("/:id")
+			userInfo.POST("/")
+		}
 	}
 
 	return router

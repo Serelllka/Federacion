@@ -21,10 +21,11 @@ type Condemnation interface {
 	CreateCondemnation(condemnations entities.Condemnation) (int, error)
 	GetCondemnationById(id int) (entities.Condemnation, error)
 	UpdateCondemnation(id int, newCondemnations entities.Condemnation) error
+	GetAllCondemnations() (condemnations []entities.Condemnation, err error)
 }
 
 type Users interface {
-	GetAllUsers() (users []entities.UserInfo, err error)
+	GetAllUsers() (users []entities.UserDto, err error)
 }
 
 type Repository struct {

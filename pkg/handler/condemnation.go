@@ -1,14 +1,14 @@
 package handler
 
 import (
-	federacion "github.com/Serelllka/Federacion/entities"
+	"github.com/Serelllka/Federacion/entities"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"time"
 )
 
 func (h *Handler) AddCondemnation(c *gin.Context) {
-	var input federacion.Condemnation
+	var input entities.Condemnation
 
 	condemnerId, err := getUserId(c)
 	if err != nil {
@@ -35,11 +35,9 @@ func (h *Handler) AddCondemnation(c *gin.Context) {
 	})
 }
 
-func (h *Handler) RemoveCondemnation(c *gin.Context) {
+func (h *Handler) GetAllCondemnations(c *gin.Context) {
+
 }
 
 func (h *Handler) GetCondemnation(c *gin.Context) {
-}
-
-func (h *Handler) GetAllCondemnation(c *gin.Context) {
 }

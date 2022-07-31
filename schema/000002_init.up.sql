@@ -17,5 +17,5 @@ CREATE TABLE condemnations
     article_id int references articles(id) on delete cascade not null,
     description text,
     cost int not null,
-    time time not null
+    time datetime not null default current_timestamp
 );

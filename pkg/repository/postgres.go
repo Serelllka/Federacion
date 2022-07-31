@@ -8,6 +8,7 @@ import (
 
 const (
 	usersTable         = "users"
+	usersInfoTable     = "usersinfo"
 	articlesTable      = "articles"
 	condemnationsTable = "condemnations"
 )

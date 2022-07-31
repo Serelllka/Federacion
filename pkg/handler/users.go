@@ -1,13 +1,13 @@
 package handler
 
 import (
-	federacion "github.com/Serelllka/Federacion/entities"
+	"github.com/Serelllka/Federacion/entities"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
 
 type getAllUsersResponse struct {
-	Data []federacion.UserInfo `json:"data"`
+	Data []entities.UserDto `json:"data"`
 }
 
 func (h *Handler) getAllUsers(c *gin.Context) {

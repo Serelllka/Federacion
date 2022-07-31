@@ -1,7 +1,7 @@
 package handler
 
 import (
-	federacion "github.com/Serelllka/Federacion/entities"
+	"github.com/Serelllka/Federacion/entities"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"strconv"
@@ -21,7 +21,7 @@ import (
 // @Failure default {object} errorResponse
 // @Router /api/articles/ [post]
 func (h *Handler) AddArticle(c *gin.Context) {
-	var input federacion.Article
+	var input entities.Article
 
 	if err := c.BindJSON(&input); err != nil {
 		newErrorResponse(c, http.StatusBadRequest, err.Error())
@@ -68,7 +68,7 @@ func (h *Handler) GetArticle(c *gin.Context) {
 }
 
 type getAllArticlesResponse struct {
-	Data []federacion.Article `json:"data"`
+	Data []entities.Article `json:"data"`
 }
 
 func (h *Handler) GetAllArticles(c *gin.Context) {

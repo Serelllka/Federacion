@@ -2,7 +2,7 @@ package repository
 
 import (
 	"fmt"
-	federacion "github.com/Serelllka/Federacion/entities"
+	"github.com/Serelllka/Federacion/entities"
 	"github.com/jmoiron/sqlx"
 )
 
@@ -14,7 +14,7 @@ func NewCondemnationPostgres(db *sqlx.DB) *CondemnationPostgres {
 	return &CondemnationPostgres{db: db}
 }
 
-func (r *CondemnationPostgres) CreateCondemnation(condemnation federacion.Condemnation) (int, error) {
+func (r *CondemnationPostgres) CreateCondemnation(condemnation entities.Condemnation) (int, error) {
 	var id int
 	query := fmt.Sprintf("INSERT INTO %s (condemner_id, convicted_id, article_id, description, cost, time) "+
 		"values ($1, $2, $3, $4, $5, $6) RETURNING id", condemnationsTable)
@@ -29,10 +29,14 @@ func (r *CondemnationPostgres) CreateCondemnation(condemnation federacion.Condem
 	return id, nil
 }
 
-func (r *CondemnationPostgres) GetCondemnationById(id int) (federacion.Condemnation, error) {
-	return federacion.Condemnation{}, nil
+func (r *CondemnationPostgres) GetCondemnationById(id int) (entities.Condemnation, error) {
+	return entities.Condemnation{}, nil
 }
 
-func (r *CondemnationPostgres) UpdateCondemnation(id int, newCondemnations federacion.Condemnation) error {
+func (r *CondemnationPostgres) UpdateCondemnation(id int, newCondemnations entities.Condemnation) error {
 	return nil
+}
+
+func (r *CondemnationPostgres) GetAllCondemnations() (condemnations []entities.Condemnation, err error) {
+	return []entities.Condemnation{}, nil
 }

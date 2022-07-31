@@ -1,7 +1,7 @@
 package service
 
 import (
-	federacion "github.com/Serelllka/Federacion/entities"
+	"github.com/Serelllka/Federacion/entities"
 	"github.com/Serelllka/Federacion/pkg/repository"
 )
 
@@ -13,14 +13,14 @@ func NewCondemnationService(repo repository.Condemnation) *CondemnationService {
 	return &CondemnationService{repo: repo}
 }
 
-func (s *CondemnationService) CreateCondemnation(condemnation federacion.Condemnation) (int, error) {
+func (s *CondemnationService) CreateCondemnation(condemnation entities.Condemnation) (int, error) {
 	return s.repo.CreateCondemnation(condemnation)
 }
 
-func (s *CondemnationService) GetAllCondemnations() ([]federacion.Condemnation, error) {
-	return []federacion.Condemnation{}, nil
+func (s *CondemnationService) GetAllCondemnations() ([]entities.Condemnation, error) {
+	return []entities.Condemnation{}, nil
 }
 
-func (s *CondemnationService) GetCondemnationById(id int) (federacion.Condemnation, error) {
-	return federacion.Condemnation{}, nil
+func (s *CondemnationService) GetCondemnationById(id int) (entities.Condemnation, error) {
+	return entities.Condemnation{}, nil
 }

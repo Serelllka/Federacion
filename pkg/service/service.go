@@ -25,7 +25,7 @@ type Condemnations interface {
 }
 
 type Users interface {
-	GetAllUsers() (users []entities.UserInfo, err error)
+	GetAllUsers() (users []entities.UserDto, err error)
 }
 
 type Service struct {
