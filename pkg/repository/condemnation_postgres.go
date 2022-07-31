@@ -29,14 +29,20 @@ func (r *CondemnationPostgres) CreateCondemnation(condemnation entities.Condemna
 	return id, nil
 }
 
-func (r *CondemnationPostgres) GetCondemnationById(id int) (entities.Condemnation, error) {
-	return entities.Condemnation{}, nil
+func (r *CondemnationPostgres) GetAllCondemnations() (condemnations []entities.Condemnation, err error) {
+	query := fmt.Sprintf("SELECT * FROM %s", condemnationsTable)
+	err = r.db.Select(&condemnations, query)
+
+	return []entities.Condemnation{}, nil
+}
+
+func (r *CondemnationPostgres) GetCondemnationById(id int) (condemnation entities.Condemnation, err error) {
+	query := fmt.Sprintf("SELECT * FROM %s WHERE id = $1", condemnationsTable)
+	err = r.db.Get(&condemnation, query, id)
+
+	return condemnation, err
 }
 
 func (r *CondemnationPostgres) UpdateCondemnation(id int, newCondemnations entities.Condemnation) error {
 	return nil
-}
-
-func (r *CondemnationPostgres) GetAllCondemnations() (condemnations []entities.Condemnation, err error) {
-	return []entities.Condemnation{}, nil
 }

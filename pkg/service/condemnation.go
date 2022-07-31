@@ -18,9 +18,9 @@ func (s *CondemnationService) CreateCondemnation(condemnation entities.Condemnat
 }
 
 func (s *CondemnationService) GetAllCondemnations() ([]entities.Condemnation, error) {
-	return []entities.Condemnation{}, nil
+	return s.repo.GetAllCondemnations()
 }
 
 func (s *CondemnationService) GetCondemnationById(id int) (entities.Condemnation, error) {
-	return entities.Condemnation{}, nil
+	return s.repo.GetCondemnationById(id)
 }

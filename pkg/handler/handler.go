@@ -58,7 +58,7 @@ func (h *Handler) InitRoutes() *gin.Engine {
 
 		condem := api.Group("/condem")
 		{
-			condem.GET("/")
+			condem.GET("/", h.GetAllCondemnations)
 			condem.POST("/", h.AddCondemnation)
 		}
 

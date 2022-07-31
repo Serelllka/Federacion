@@ -35,8 +35,21 @@ func (h *Handler) AddCondemnation(c *gin.Context) {
 	})
 }
 
-func (h *Handler) GetAllCondemnations(c *gin.Context) {
+type GetAllCondemnationsResponse struct {
+	Data []entities.Condemnation `json:"data"`
+}
 
+func (h *Handler) GetAllCondemnations(c *gin.Context) {
+	condemnations, err := h.services.Condemnations.GetAllCondemnations()
+
+	if err != nil {
+		newErrorResponse(c, http.StatusInternalServerError, err.Error())
+		return
+	}
+
+	c.JSON(http.StatusOK, GetAllCondemnationsResponse{
+		Data: condemnations,
+	})
 }
 
 func (h *Handler) GetCondemnation(c *gin.Context) {
