@@ -33,7 +33,7 @@ func (r *CondemnationPostgres) GetAllCondemnations() (condemnations []entities.C
 	query := fmt.Sprintf("SELECT * FROM %s", condemnationsTable)
 	err = r.db.Select(&condemnations, query)
 
-	return []entities.Condemnation{}, nil
+	return condemnations, err
 }
 
 func (r *CondemnationPostgres) GetCondemnationById(id int) (condemnation entities.Condemnation, err error) {

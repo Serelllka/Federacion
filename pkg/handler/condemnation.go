@@ -39,6 +39,17 @@ type GetAllCondemnationsResponse struct {
 	Data []entities.Condemnation `json:"data"`
 }
 
+// @Summary GetAllCondemnations
+// @Tags condemn
+// @Description GetAllCondemnations
+// @ID getAllCondemns
+// @Accept json
+// @Produce json
+// @Success 200 {string} string "token"
+// @Failure 400,404 {object} errorResponse
+// @Failure 500 {object} errorResponse
+// @Failure default {object} errorResponse
+// @Router /auth/sign-in [post]
 func (h *Handler) GetAllCondemnations(c *gin.Context) {
 	condemnations, err := h.services.Condemnations.GetAllCondemnations()
 

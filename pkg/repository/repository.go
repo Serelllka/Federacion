@@ -26,6 +26,12 @@ type Condemnation interface {
 
 type Users interface {
 	GetAllUsers() (users []entities.UserDto, err error)
+
+	GetUserInfoById(id int) (userInfo entities.UserInfo, err error)
+}
+
+type Achievements interface {
+	GetAllAchievements() (achievements []entities.Achievement)
 }
 
 type Repository struct {

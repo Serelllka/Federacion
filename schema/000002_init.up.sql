@@ -15,7 +15,7 @@ CREATE TABLE condemnations
     condemner_id int references users(id) on delete cascade not null,
     convicted_id int references users(id) on delete cascade not null,
     article_id int references articles(id) on delete cascade not null,
-    description text,
+    description text not null,
     cost int not null,
     time datetime not null default current_timestamp
 );

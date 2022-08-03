@@ -20,3 +20,12 @@ func (r *UsersPostgres) GetAllUsers() (users []entities.UserDto, err error) {
 
 	return users, err
 }
+
+func (r *UsersPostgres) GetUserInfoById(id int) (userInfo entities.UserInfo, err error) {
+	query := fmt.Sprintf(
+		`SELECT u.id, u.name, u.username, u.email, ui.image, ui.hobbies, ui.lore, 
+	ui.sobriquet from %s as u join %s as ui on u.id=ui.user_id where u.id=$1`, usersTable, usersInfoTable)
+	err = r.db.Get(&userInfo, query, id)
+
+	return userInfo, err
+}

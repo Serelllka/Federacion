@@ -46,7 +46,7 @@ func (h *Handler) AddArticle(c *gin.Context) {
 // @ID getArticle
 // @Produce json
 // @Accept json
-// @Success 200 {string} string "token"
+// @Success 200 {object} entities.Article
 // @Failure 400,404 {object} errorResponse
 // @Failure 500 {object} errorResponse
 // @Failure default {object} errorResponse
@@ -71,6 +71,19 @@ type getAllArticlesResponse struct {
 	Data []entities.Article `json:"data"`
 }
 
+// @Summary GetAllArticles
+// @Security ApiKeyAuth
+// @Tags article
+// @Description gets articles
+// @ID getAllArticles
+// @Produce json
+// @Accept json
+// @Success 200 {object} getAllArticlesResponse
+// @Failure 400,404 {object} errorResponse
+// @Failure 500 {object} errorResponse
+// @Failure default {object} errorResponse
+// @Param id path int true "ArticleId"
+// @Router /api/articles/ [get]
 func (h *Handler) GetAllArticles(c *gin.Context) {
 	articles, err := h.services.Articles.GetAllArticles()
 

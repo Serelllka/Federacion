@@ -64,9 +64,23 @@ func (h *Handler) InitRoutes() *gin.Engine {
 
 		userInfo := api.Group("/user-info")
 		{
-			userInfo.GET("/")
-			userInfo.GET("/:id")
+			userInfo.GET("/", h.getUserInfo)
+			userInfo.GET("/:id", h.getUserInfoById)
 			userInfo.POST("/")
+		}
+
+		achievement := api.Group("/achievement")
+		{
+			achievement.GET("/")
+			achievement.GET("/:id")
+			achievement.POST("/")
+		}
+
+		userAchieve := api.Group("user-achieve")
+		{
+			userAchieve.GET("/")
+			userAchieve.GET("/:id")
+			userAchieve.POST("/")
 		}
 	}
 
