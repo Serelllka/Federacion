@@ -1,7 +1,8 @@
 # Federacion
 
 Backend для сайта, написанного для discord сервера
-Frontend, написанный на React ->
+
+Frontend, написанный на React -> https://github.com/Serelllka/FederacionClient2.0
 
 Основной функционал сайта:
 
