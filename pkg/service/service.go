@@ -25,13 +25,21 @@ type Condemnations interface {
 }
 
 type Users interface {
-	GetAllUsers() (users []entities.UserDto, err error)
+	GetAllUsers() ([]entities.UserDto, error)
 
 	GetUserInfoById(id int) (userInfo entities.UserInfo, err error)
 }
 
+type Achievement interface {
+	GetAllAchievements() ([]entities.Achievement, error)
+	GetAchievementById(id int) (entities.Achievement, error)
+
+	GetUserAchievements(id int) ([]entities.UserAchievement, error)
+}
+
 type Service struct {
 	Authorization
+	Achievement
 	Condemnations
 	Articles
 	Users
@@ -43,5 +51,6 @@ func NewService(repos *repository.Repository) *Service {
 		Condemnations: NewCondemnationService(repos.Condemnation),
 		Articles:      NewArticleService(repos.Article),
 		Users:         NewUsersService(repos.Users),
+		Achievement:   NewAchievementService(repos.Achievements, repos.UserAchievements),
 	}
 }

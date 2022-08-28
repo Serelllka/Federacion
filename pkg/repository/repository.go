@@ -21,31 +21,41 @@ type Condemnation interface {
 	CreateCondemnation(condemnations entities.Condemnation) (int, error)
 	GetCondemnationById(id int) (entities.Condemnation, error)
 	UpdateCondemnation(id int, newCondemnations entities.Condemnation) error
-	GetAllCondemnations() (condemnations []entities.Condemnation, err error)
+	GetAllCondemnations() ([]entities.Condemnation, error)
 }
 
 type Users interface {
-	GetAllUsers() (users []entities.UserDto, err error)
+	GetAllUsers() ([]entities.UserDto, error)
 
-	GetUserInfoById(id int) (userInfo entities.UserInfo, err error)
+	GetUserInfoById(id int) (entities.UserInfo, error)
 }
 
 type Achievements interface {
-	GetAllAchievements() (achievements []entities.Achievement)
+	GetAllAchievements() ([]entities.Achievement, error)
+	GetAchievementById(id int) (entities.Achievement, error)
+}
+
+type UserAchievements interface {
+	GetUserAchievements(id int) ([]entities.UserAchievement, error)
+	GetUserAchievementsById(id int) (entities.UserAchievement, error)
 }
 
 type Repository struct {
-	Users
-	Condemnation
+	Achievements
 	Authorization
 	Article
+	Users
+	UserAchievements
+	Condemnation
 }
 
 func NewRepository(db *sqlx.DB) *Repository {
 	return &Repository{
-		Authorization: NewAuthPostgres(db),
-		Article:       NewArticlePostgres(db),
-		Condemnation:  NewCondemnationPostgres(db),
-		Users:         NewUsersPostgres(db),
+		Authorization:    NewAuthPostgres(db),
+		Article:          NewArticlePostgres(db),
+		Condemnation:     NewCondemnationPostgres(db),
+		Users:            NewUsersPostgres(db),
+		Achievements:     NewAchievementPostgres(db),
+		UserAchievements: NewUserAchievementsPostgres(db),
 	}
 }

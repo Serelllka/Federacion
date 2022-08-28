@@ -71,16 +71,22 @@ func (h *Handler) InitRoutes() *gin.Engine {
 
 		achievement := api.Group("/achievement")
 		{
-			achievement.GET("/")
+			achievement.GET("/", h.GetAchievements)
 			achievement.GET("/:id")
 			achievement.POST("/")
 		}
 
 		userAchieve := api.Group("user-achieve")
 		{
-			userAchieve.GET("/")
-			userAchieve.GET("/:id")
+			userAchieve.GET("/", h.GetUserAchievementsByToken)
+			userAchieve.GET("/:id", h.GetUserAchievementsById)
 			userAchieve.POST("/")
+		}
+
+		clownPoints := api.Group("points")
+		{
+			clownPoints.GET("/")
+			clownPoints.GET("/:id")
 		}
 	}
 
