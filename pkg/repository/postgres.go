@@ -13,6 +13,7 @@ const (
 	articlesTable          = "articles"
 	condemnationsTable     = "condemnations"
 	achievementsTable      = "achievements"
+	itemsTable             = "items"
 )
 
 type Config struct {

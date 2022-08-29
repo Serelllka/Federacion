@@ -37,12 +37,19 @@ type Achievement interface {
 	GetUserAchievements(id int) ([]entities.UserAchievement, error)
 }
 
+type Items interface {
+	CreateItem(item entities.Item) (int, error)
+	GetItemById(id int) (entities.Item, error)
+	GetAllItems() ([]entities.Item, error)
+}
+
 type Service struct {
 	Authorization
 	Achievement
 	Condemnations
 	Articles
 	Users
+	Items
 }
 
 func NewService(repos *repository.Repository) *Service {

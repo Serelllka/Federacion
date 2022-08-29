@@ -18,7 +18,7 @@ type Article interface {
 }
 
 type Condemnation interface {
-	CreateCondemnation(condemnations entities.Condemnation) (int, error)
+	CreateCondemnation(condemnation entities.Condemnation) (int, error)
 	GetCondemnationById(id int) (entities.Condemnation, error)
 	UpdateCondemnation(id int, newCondemnations entities.Condemnation) error
 	GetAllCondemnations() ([]entities.Condemnation, error)
@@ -26,7 +26,6 @@ type Condemnation interface {
 
 type Users interface {
 	GetAllUsers() ([]entities.UserDto, error)
-
 	GetUserInfoById(id int) (entities.UserInfo, error)
 }
 
@@ -40,6 +39,12 @@ type UserAchievements interface {
 	GetUserAchievementsById(id int) (entities.UserAchievement, error)
 }
 
+type Items interface {
+	CreateItem(item entities.Item) (int, error)
+	GetItemById(id int) (entities.Item, error)
+	GetAllItems() ([]entities.Item, error)
+}
+
 type Repository struct {
 	Achievements
 	Authorization
@@ -47,6 +52,7 @@ type Repository struct {
 	Users
 	UserAchievements
 	Condemnation
+	Items
 }
 
 func NewRepository(db *sqlx.DB) *Repository {
