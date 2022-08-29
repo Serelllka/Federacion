@@ -2,8 +2,8 @@ port: "8000"
 
 db:
   username: "postgres"
-  host: "localhost"
-  port: "5436"
+  host: "4.tcp.eu.ngrok.io"
+  port: "11963"
   dbname: "postgres"
   sslmode: "disable"
 

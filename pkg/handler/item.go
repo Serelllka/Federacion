@@ -7,28 +7,28 @@ import (
 	"strconv"
 )
 
-// @Summary AddArticle
+// @Summary AddItem
 // @Security ApiKeyAuth
-// @Tags article
-// @Description adds article
-// @ID addArticle
+// @Tags item
+// @Description adds item
+// @ID addItem
 // @Accept json
 // @Produce json
-// @Param input body entities.Article true "ArticleId"
+// @Param input body entities.Item true "ItemId"
 // @Success 200 {string} string "token"
 // @Failure 400,404 {object} errorResponse
 // @Failure 500 {object} errorResponse
 // @Failure default {object} errorResponse
-// @Router /api/articles/ [post]
-func (h *Handler) AddArticle(c *gin.Context) {
-	var input entities.Article
+// @Router /items/ [post]
+func (h *Handler) AddItem(c *gin.Context) {
+	var input entities.Item
 
 	if err := c.BindJSON(&input); err != nil {
 		newErrorResponse(c, http.StatusBadRequest, err.Error())
 		return
 	}
 
-	id, err := h.services.Articles.CreateArticle(input)
+	id, err := h.services.Items.CreateItem(input)
 	if err != nil {
 		newErrorResponse(c, http.StatusInternalServerError, err.Error())
 		return
@@ -39,59 +39,59 @@ func (h *Handler) AddArticle(c *gin.Context) {
 	})
 }
 
-// @Summary GetArticle
+// @Summary GetItem
 // @Security ApiKeyAuth
-// @Tags article
-// @Description gets article
-// @ID getArticle
+// @Tags item
+// @Description gets item
+// @ID getItem
 // @Produce json
 // @Accept json
-// @Success 200 {object} entities.Article
+// @Success 200 {object} entities.Item
 // @Failure 400,404 {object} errorResponse
 // @Failure 500 {object} errorResponse
 // @Failure default {object} errorResponse
-// @Param id path int true "ArticleId"
-// @Router /api/articles/{id} [get]
-func (h *Handler) GetArticle(c *gin.Context) {
+// @Param id path int true "ItemId"
+// @Router /items/{id} [get]
+func (h *Handler) GetItem(c *gin.Context) {
 	id, err := strconv.Atoi(c.Param("id"))
 
 	if err != nil {
 		newErrorResponse(c, http.StatusBadRequest, "invalid id")
 	}
 
-	article, err := h.services.Articles.GetArticleById(id)
+	item, err := h.services.Items.GetItemById(id)
 	if err != nil {
 		return
 	}
 
-	c.JSON(http.StatusOK, article)
+	c.JSON(http.StatusOK, item)
 }
 
-type getAllArticlesResponse struct {
-	Data []entities.Article `json:"data"`
+type getAllItemsResponse struct {
+	Data []entities.Item `json:"data"`
 }
 
-// @Summary GetAllArticles
+// @Summary GetAllItems
 // @Security ApiKeyAuth
-// @Tags article
-// @Description gets articles
-// @ID getAllArticles
+// @Tags item
+// @Description gets items
+// @ID getAllItems
 // @Produce json
 // @Accept json
-// @Success 200 {object} getAllArticlesResponse
+// @Success 200 {object} getAllItemsResponse
 // @Failure 400,404 {object} errorResponse
 // @Failure 500 {object} errorResponse
 // @Failure default {object} errorResponse
-// @Router /api/articles/ [get]
-func (h *Handler) GetAllArticles(c *gin.Context) {
-	articles, err := h.services.Articles.GetAllArticles()
+// @Router /items/ [get]
+func (h *Handler) GetAllItems(c *gin.Context) {
+	items, err := h.services.Items.GetAllItems()
 
 	if err != nil {
 		newErrorResponse(c, http.StatusInternalServerError, err.Error())
 		return
 	}
 
-	c.JSON(http.StatusOK, getAllArticlesResponse{
-		Data: articles,
+	c.JSON(http.StatusOK, getAllItemsResponse{
+		Data: items,
 	})
 }

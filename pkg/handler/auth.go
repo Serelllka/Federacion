@@ -14,7 +14,7 @@ import (
 // @Description create account
 // @ID create-account
 // @Produce  json
-// @Param input body federacion.User true "account info"
+// @Param input body entities.User true "account info"
 // @Success 200 {integer} integer 1
 // @Failure 400,404 {object} errorResponse
 // @Failure 500 {object} errorResponse

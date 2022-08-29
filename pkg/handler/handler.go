@@ -90,5 +90,12 @@ func (h *Handler) InitRoutes() *gin.Engine {
 		}
 	}
 
+	item := router.Group("/items")
+	{
+		item.POST("/", h.AddItem)
+		item.GET("/:id", h.GetItem)
+		item.GET("/", h.GetAllItems)
+	}
+
 	return router
 }
