@@ -11,7 +11,6 @@ import (
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
 
-	_ "github.com/Serelllka/Federacion/docs"
 	_ "github.com/lib/pq"
 )
 
