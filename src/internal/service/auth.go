@@ -7,7 +7,7 @@ import (
 	"github.com/Serelllka/Federacion/entities"
 	"time"
 
-	"github.com/Serelllka/Federacion/pkg/repository"
+	"github.com/Serelllka/Federacion/internal/repository"
 	"github.com/golang-jwt/jwt/v4"
 )
 

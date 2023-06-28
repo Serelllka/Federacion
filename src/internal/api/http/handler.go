@@ -1,7 +1,7 @@
-package handler
+package http
 
 import (
-	"github.com/Serelllka/Federacion/pkg/service"
+	"github.com/Serelllka/Federacion/internal/service"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/contrib/static"
 	"github.com/gin-gonic/gin"

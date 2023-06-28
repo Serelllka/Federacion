@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+package article_api;
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+import "validate/validate.proto";

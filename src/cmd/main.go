@@ -1,12 +1,12 @@
 package main
 
 import (
+	"github.com/Serelllka/Federacion/internal/api/http"
 	"os"
 
 	"github.com/Serelllka/Federacion"
-	"github.com/Serelllka/Federacion/pkg/handler"
-	"github.com/Serelllka/Federacion/pkg/repository"
-	"github.com/Serelllka/Federacion/pkg/service"
+	"github.com/Serelllka/Federacion/internal/repository"
+	"github.com/Serelllka/Federacion/internal/service"
 	"github.com/joho/godotenv"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
@@ -50,7 +50,7 @@ func main() {
 
 	repos := repository.NewRepository(db)
 	services := service.NewService(repos)
-	handlers := handler.NewHandler(services)
+	handlers := http.NewHandler(services)
 
 	server := new(federacion.Server)
 	if err := server.Run(viper.GetString("port"), handlers.InitRoutes()); err != nil {

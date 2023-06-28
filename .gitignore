@@ -1,3 +1,5 @@
 ../.idea
 .env
 .bat
+bin
+vendor-proto

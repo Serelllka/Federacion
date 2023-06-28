@@ -2,7 +2,7 @@ package service
 
 import (
 	"github.com/Serelllka/Federacion/entities"
-	"github.com/Serelllka/Federacion/pkg/repository"
+	"github.com/Serelllka/Federacion/internal/repository"
 )
 
 type ArticleService struct {
